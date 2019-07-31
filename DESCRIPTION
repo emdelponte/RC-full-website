@@ -1,0 +1,21 @@
+Type: Compendium
+Package: RC full website
+Title: Builds a full website
+Version: 0.0.1
+Authors@R: 
+    person(given = "First",
+           family = "Last",
+           role = c("aut", "cre"),
+           email = "edelponte@ufv.br",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Your compendium description
+License: What license it uses
+Depends: 
+    janitor,
+    metafor,
+    netmeta,
+    readxl,
+    rmarkdown,
+    tidyverse
+Encoding: UTF-8
+LazyData: true

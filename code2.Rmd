@@ -1,0 +1,121 @@
+% Code2
+
+# Meta-analyisis
+
+## Arm-based model
+
+For fitting the arm-based model (fitted to tratment means not the contrasts between pairs of treatments), we need a measure of sampling variance which will be the mean square error (MSE) of the anova model fitted to trial. Therefore, there is only one variance for all comparisons within the same trial. The model will be fitted to mean incidence data using the `rma.mv` function of metafor package to get the estimates for each treatment. 
+
+```{r}
+
+library(metafor)
+
+mv_yld <- rma.mv(yld_mean, yld_mse,
+  mods = ~fungicide,
+  random = list(~ fungicide | study),
+  struct = "UN",
+  method = "ML",
+  control = list(optimizer = "nlm"),
+  data = dat_wm2
+)
+
+summary(mv_yld)
+```
+
+```{r}
+anova(mv_yld, L = rbind(
+  c(0, 1, -1, 0, 0),
+  c(0, 1, 0, -1, 0),
+  c(0, 1, 0, 0, -1),
+  c(0, 0, 1, -1, 0),
+  c(0, 0, 1, 0, -1),
+  c(0, 0, 0, 1, -1)
+))
+```
+
+
+## Moderator analysis
+
+
+### Baseline incidence
+
+Let's create a dummy variable for the incidence level in the check treatment. We will split the data into two set of epidemics greater or lower than 30% incidence as threshold.
+
+```{r}
+
+dat_wm2 <- dat_wm2 %>%
+  mutate(
+    inc_check_class = case_when(
+      inc_mean_check < 30 ~ "low",
+      inc_mean_check >= 30 ~ "high"
+    )
+  )
+dat_wm2
+```
+
+```{r}
+
+mv_yld_class <- rma.mv(yld_mean, yld_mse,
+  mods = ~ fungicide * inc_check_class,
+  random = list(~ factor(fungicide) | factor(study)),
+  struct = "UN",
+  method = "ML",
+  control = list(optimizer = "nlm"),
+  data = dat_wm2
+)
+mv_yld_class
+
+anova(mv_yld_class, btt = 7:10)
+```
+
+## Contrast-based model
+
+For the contrast-based model, we will fit the model to each contrast, which needs to be calculate first to fitting the model using the netmeta package. Let's do this then using the `pairwise` function.
+
+```{r}
+library(netmeta)
+
+pair_yld <- pairwise(
+  treat = factor(fungicide),
+  n = 4,
+  mean = as.numeric(yld_mean),
+  sd = as.numeric(yld_sd),
+  studlab = study,
+  data = dat_wm2,
+  sm = "MD"
+)
+pair_yld
+```
+
+Now we fit the model and use the standard deviation of the treatment as a measure of sampling variance.
+
+```{r}
+
+net_yld <- netmeta(TE, seTE, treat1, treat2, studlab, data = pair_yld, sm = "MD")
+summary(net_yld)
+```
+
+
+
+A network graph is composed of nodes (fungicide treatments) and edges or links between two treatments directly compared in a same trial. This graph allows to visualize how the treatments relate to each other and the number of direct comparisons can be depicted by the thickness of the edges, but also with numbers presented at the top of the links. 
+
+```{r}
+
+netgraph(net_yld,
+  plastic = FALSE,
+  col = "gray",
+  thickness = "number.of.studies",
+  points = TRUE,
+  col.points = "black",
+  cex.points = c("CHECK (73)" = 6, "DIMO+BOSC (72)" = 5.9, "FLUO (73)" = 6, "FLUZ (73)" = 6, "PROC (72)" = 5.9),
+  number.of.studies = TRUE,
+  cex.number.of.studies = 1.25,
+  col.number.of.studies = "black",
+  bg.number.of.studies = "white",
+  multiarm = FALSE,
+  col.multiarm = "gray",
+  pos.number.of.studies = 0.60
+)
+dev.copy(png, "figs/netplot.png")
+dev.off
+```

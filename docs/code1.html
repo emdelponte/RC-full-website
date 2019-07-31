@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>code1.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="templates/style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Fungicide effects on soybean yield</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa fa fa-home"></span>
+     
+    About
+  </a>
+</li>
+<li>
+  <a href="data.html">
+    <span class="fa fa fa fa-table"></span>
+     
+    Data
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa fa fa-file-code-o"></span>
+     
+    Documented analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="code1.html">Exploration</a>
+    </li>
+    <li>
+      <a href="code2.html">Modeling</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="manuscript.html">
+    <span class="fa fa fa fa-table"></span>
+     
+    Manuscript
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown-header">source</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Code</h1>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>(What this script does?) Describes (in sufficient details for both self and third-party reproducibility!) the steps of the analysis of data obtained in field experiments conducted in Brazil to evaluate the effect of fungicides for managing soybean white mold.</p>
+</div>
+<div id="data-import" class="section level1">
+<h1>Data import</h1>
+<p>The data were organized as binary file (.xlsx) and text file (.csv) and both are available with the same structure and content. R has functions for importing both data types. Let’s work with the binary format for now as this is the format that is saved directly from a spreadsheet software (Excel, LibreOffice, etc.). We will use the <code>read_excel</code> function of the <em>readxl</em> package.</p>
+<pre class="r"><code>library(readxl) 
+
+# Load the data and assign it to dat_wm dataframe. 
+dat_wm &lt;- read_excel(&quot;data/dat-whitemold.xlsx&quot;)
+
+# Check the first and last six rows
+head(dat_wm)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["study"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]},{"label":["location"],"name":[3],"type":["chr"],"align":["left"]},{"label":["state"],"name":[4],"type":["chr"],"align":["left"]},{"label":["site_altitude"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["region"],"name":[6],"type":["chr"],"align":["left"]},{"label":["fungicide"],"name":[7],"type":["chr"],"align":["left"]},{"label":["inc_mean_check"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["inc_mean"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["yld_mean_check"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["yld_mean"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["yld_mse"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["yld_sd"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["design"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2008/2009","3":"Montividiu","4":"GO","5":"921","6":"North","7":"AACHECK-0","8":"76","9":"76","10":"2265","11":"2265","12":"34780.02","13":"85.57","14":"3"},{"1":"1","2":"2008/2009","3":"Montividiu","4":"GO","5":"921","6":"North","7":"DIMO+BOSC-2","8":"76","9":"28","10":"2265","11":"2925","12":"34780.02","13":"203.47","14":"3"},{"1":"1","2":"2008/2009","3":"Montividiu","4":"GO","5":"921","6":"North","7":"FLUO-2","8":"76","9":"27","10":"2265","11":"3044","12":"34780.02","13":"189.12","14":"3"},{"1":"1","2":"2008/2009","3":"Montividiu","4":"GO","5":"921","6":"North","7":"FLUZ-2","8":"76","9":"26","10":"2265","11":"2965","12":"34780.02","13":"285.09","14":"3"},{"1":"1","2":"2008/2009","3":"Montividiu","4":"GO","5":"921","6":"North","7":"PROCY-2","8":"76","9":"40","10":"2265","11":"2967","12":"34780.02","13":"226.41","14":"3"},{"1":"2","2":"2008/2009","3":"São Miguel do Passa Quatro","4":"GO","5":"1031","6":"North","7":"AACHECK-0","8":"53","9":"53","10":"2257","11":"2257","12":"37608.39","13":"62.99","14":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="data-exploration" class="section level1">
+<h1>Data exploration</h1>
+<p>Apparently, we have the data succesfully imported. Let’s now use a combination of data visualization and wrangling to make some decisions on which data will be used and if there is any transformation required. We will use a set of functions of the <em>dplyr</em> package, but to facilitate our job (or the code style I like to use), let’s load the tidyverse that includes dplyr, ggplot2 and several other packages, and also Janitor for basic summary.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggplot2&#39;:
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang</code></pre>
+<pre><code>## ── Attaching packages ───────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.3     ✔ dplyr   0.8.1
+## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(janitor)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code># Check structure and type of variables automatically assigned
+glimpse(dat_wm)</code></pre>
+<pre><code>## Observations: 404
+## Variables: 14
+## $ study          &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4…
+## $ year           &lt;chr&gt; &quot;2008/2009&quot;, &quot;2008/2009&quot;, &quot;2008/2009&quot;, &quot;2008/2009…
+## $ location       &lt;chr&gt; &quot;Montividiu&quot;, &quot;Montividiu&quot;, &quot;Montividiu&quot;, &quot;Montiv…
+## $ state          &lt;chr&gt; &quot;GO&quot;, &quot;GO&quot;, &quot;GO&quot;, &quot;GO&quot;, &quot;GO&quot;, &quot;GO&quot;, &quot;GO&quot;, &quot;GO&quot;, &quot;…
+## $ site_altitude  &lt;dbl&gt; 921, 921, 921, 921, 921, 1031, 1031, 1031, 1031, …
+## $ region         &lt;chr&gt; &quot;North&quot;, &quot;North&quot;, &quot;North&quot;, &quot;North&quot;, &quot;North&quot;, &quot;Nor…
+## $ fungicide      &lt;chr&gt; &quot;AACHECK-0&quot;, &quot;DIMO+BOSC-2&quot;, &quot;FLUO-2&quot;, &quot;FLUZ-2&quot;, &quot;…
+## $ inc_mean_check &lt;dbl&gt; 76, 76, 76, 76, 76, 53, 53, 53, 53, 53, 65, 65, 6…
+## $ inc_mean       &lt;dbl&gt; 76, 28, 27, 26, 40, 53, 7, 15, 8, 16, 65, 25, 23,…
+## $ yld_mean_check &lt;dbl&gt; 2265, 2265, 2265, 2265, 2265, 2257, 2257, 2257, 2…
+## $ yld_mean       &lt;dbl&gt; 2265, 2925, 3044, 2965, 2967, 2257, 2666, 2674, 2…
+## $ yld_mse        &lt;dbl&gt; 34780.02, 34780.02, 34780.02, 34780.02, 34780.02,…
+## $ yld_sd         &lt;dbl&gt; 85.57, 203.47, 189.12, 285.09, 226.41, 62.99, 63.…
+## $ design         &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…</code></pre>
+<pre class="r"><code>## Number of treatments by year
+dat_wm %&gt;% 
+  tabyl(year)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2008/2009","2":"25","3":"0.06188119"},{"1":"2009/2010","2":"47","3":"0.11633663"},{"1":"2010/2011","2":"36","3":"0.08910891"},{"1":"2011/2012","2":"72","3":"0.17821782"},{"1":"2012/2013","2":"36","3":"0.08910891"},{"1":"2013/2014","2":"35","3":"0.08663366"},{"1":"2014/2015","2":"28","3":"0.06930693"},{"1":"2015/2016","2":"70","3":"0.17326733"},{"1":"2016/2017","2":"55","3":"0.13613861"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="number-of-studies-by-year" class="section level2">
+<h2>Number of studies by year</h2>
+<pre class="r"><code>dat_wm %&gt;% 
+  group_by(year, study) %&gt;% 
+  summarise(n()) %&gt;% 
+  tabyl(year)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2008/2009","2":"5","3":"0.07692308"},{"1":"2009/2010","2":"8","3":"0.12307692"},{"1":"2010/2011","2":"6","3":"0.09230769"},{"1":"2011/2012","2":"12","3":"0.18461538"},{"1":"2012/2013","2":"7","3":"0.10769231"},{"1":"2013/2014","2":"5","3":"0.07692308"},{"1":"2014/2015","2":"4","3":"0.06153846"},{"1":"2015/2016","2":"10","3":"0.15384615"},{"1":"2016/2017","2":"8","3":"0.12307692"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="number-of-studies-by-state" class="section level2">
+<h2>Number of studies by state</h2>
+<pre class="r"><code>dat_wm %&gt;% 
+  group_by(year, state) %&gt;% 
+  summarise(n()) %&gt;% 
+  tabyl(state)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BA","2":"2","3":"0.05714286"},{"1":"GO","2":"9","3":"0.25714286"},{"1":"MG","2":"6","3":"0.17142857"},{"1":"MS","2":"4","3":"0.11428571"},{"1":"MT","2":"2","3":"0.05714286"},{"1":"PR","2":"9","3":"0.25714286"},{"1":"RS","2":"1","3":"0.02857143"},{"1":"SP","2":"2","3":"0.05714286"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="number-of-treatments-by-fungicides" class="section level2">
+<h2>Number of treatments by fungicides</h2>
+<pre class="r"><code>dat_wm %&gt;% 
+  tabyl(fungicide)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["fungicide"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"AACHECK-0","2":"65","3":"0.16089109"},{"1":"CARB+PROCY-2","2":"27","3":"0.06683168"},{"1":"DIMO+BOSC-2","2":"64","3":"0.15841584"},{"1":"FLUO-2","2":"65","3":"0.16089109"},{"1":"FLUZ-2","2":"65","3":"0.16089109"},{"1":"PROCY-2","2":"64","3":"0.15841584"},{"1":"TIOF-4","2":"54","3":"0.13366337"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="data-wrangling" class="section level1">
+<h1>Data wrangling</h1>
+<p>Now that we explored the data, we may want to make some decisions such as selection of treatments based on criteria. For now, we decided to work with fungicides which were evaluated in more than 50 trials and applied only twice. Based on these, two fungicides will not be included in our analysis. Let’s do some filtering in the data and prepare it for further analysis. We will also export the new data as a new data file.</p>
+<pre class="r"><code>dat_wm2 &lt;- dat_wm %&gt;% 
+  filter(fungicide!= &quot;CARB+PROCY-2&quot;) %&gt;% 
+  filter(fungicide != &quot;TIOF-4&quot;)</code></pre>
+<p>Let’s check if the filter was applied correctly</p>
+<pre class="r"><code>dat_wm2 %&gt;% 
+  tabyl(fungicide)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["fungicide"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"AACHECK-0","2":"65","3":"0.2012384"},{"1":"DIMO+BOSC-2","2":"64","3":"0.1981424"},{"1":"FLUO-2","2":"65","3":"0.2012384"},{"1":"FLUZ-2","2":"65","3":"0.2012384"},{"1":"PROCY-2","2":"64","3":"0.1981424"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Now we can export the new data using the <code>write_csv</code> function.</p>
+<pre class="r"><code>write_csv(dat_wm2, &quot;data-whitemold2.csv&quot;)</code></pre>
+</div>
+<div id="data-visualization" class="section level1">
+<h1>Data visualization</h1>
+<p>Now let’s have a quick look at the data so we can learn from it before we go ahead with the meta-analysis.</p>
+<div id="disease-pressure-by-year" class="section level2">
+<h2>Disease “pressure” by year</h2>
+<pre class="r"><code>theme_set(theme_light())
+dat_wm2 %&gt;% 
+  filter(fungicide == &quot;AACHECK-0&quot;) %&gt;% 
+  ggplot(aes(year, inc_mean))+
+  geom_boxplot()</code></pre>
+<p><img src="code1_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="baeline-yield-by-year" class="section level2">
+<h2>Baeline yield by year</h2>
+<pre class="r"><code>dat_wm2 %&gt;% 
+  filter(fungicide == &quot;AACHECK-0&quot;) %&gt;% 
+  ggplot(aes(year, yld_mean))+
+  geom_boxplot()</code></pre>
+<p><img src="code1_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="disease-yield-relation" class="section level2">
+<h2>Disease-yield relation</h2>
+<pre class="r"><code>dat_wm2 %&gt;% 
+  #filter(fungicide == &quot;AACHECK-0&quot;) %&gt;%
+  ggplot(aes(inc_mean, yld_mean))+
+  geom_point()</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<p><img src="code1_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="baeline-yield-by-fungicide" class="section level2">
+<h2>Baeline yield by fungicide</h2>
+<pre class="r"><code>dat_wm2 %&gt;% 
+  ggplot(aes(fungicide, yld_mean))+
+  geom_boxplot()+
+  labs(x = &quot;Fungicide&quot;, y = &quot;Yield (kg/ha)&quot;,  title = &quot;Effect of fungicides on soybean yield&quot;,
+       caption = &quot;Source: Barro et al. (2019)&quot;)</code></pre>
+<p><img src="code1_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>ggsave(&quot;figs/yield_fungicide_box.png&quot;)</code></pre>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+</div>
+</div>
+
+
+
+Copyright 20xx Your name
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

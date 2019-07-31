@@ -1,0 +1,58 @@
+---
+title: "Title goes here"
+author:
+  - Author One
+  - Author Two
+abstract: |
+  Text of abstract 
+keywords: |
+  keyword 1; keyword 2; keyword 3
+highlights: |
+  These are the highlights.
+output: 
+  word_document:
+    reference_docx: templates/template.docx
+bibliography: references.bib
+csl: phytopathology.csl 
+
+
+---
+<br><br>
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula risus nec libero imperdiet fermentum. Maecenas convallis libero condimentum finibus euismod. Nunc lacinia, leo et sagittis posuere, augue sapien molestie lacus, ut imperdiet velit sem et nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod lorem vitae consequat congue. Donec bibendum, nulla et venenatis tincidunt, nulla quam hendrerit lorem, nec semper nunc tortor sit amet dui. Maecenas sit amet laoreet sem.
+
+Here is a citation [@Lehner_2016]
+
+# Material and Methods
+
+## subheading 1
+
+Cras sollicitudin massa et felis rhoncus, scelerisque feugiat metus rutrum. Aenean blandit augue id sapien mattis consectetur. Nulla sollicitudin lectus nec massa iaculis, sed aliquet ante consequat. Donec ut vehicula felis. Etiam placerat convallis efficitur. Mauris id lacinia est. Vivamus vitae diam metus. Aliquam eget massa at ante ornare ultrices id nec tortor. Curabitur quam odio, tincidunt sit amet ipsum id, hendrerit viverra erat. 
+
+## subheading 2
+Vivamus ullamcorper justo sapien, vitae efficitur dui laoreet vitae. Etiam tristique, nibh vitae varius mattis, turpis leo elementum eros, quis dictum dolor enim a nunc. Etiam cursus velit eget nisl gravida, quis faucibus justo congue. Nunc vestibulum venenatis felis. Nullam sit amet nibh erat. Nulla vel ex viverra, fringilla ex eget, luctus enim. Nulla lacinia nisi risus, sit amet laoreet purus mattis quis. Aliquam pellentesque dolor ac metus blandit iaculis. Nulla mollis massa magna, non auctor nibh tempor vitae. Quisque mollis vel dolor eu pretium.
+
+
+# Results 
+
+
+## subheading 1
+ 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in blandit est. Fusce quis hendrerit libero, id auctor quam. Duis et vestibulum mauris. Maecenas sagittis condimentum laoreet. Donec vitae lectus eu erat hendrerit facilisis sed eget sem. Nam interdum libero ac ex cursus suscipit.
+
+## subheading 2
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in blandit est. Fusce quis hendrerit libero, id auctor quam. Duis et vestibulum mauris. Maecenas sagittis condimentum laoreet. Donec vitae lectus eu erat hendrerit facilisis sed eget sem. Nam interdum libero ac ex cursus suscipit.
+
+
+# Discussion
+
+Sed vitae neque diam. Donec facilisis nisi nec mollis finibus. Nullam fermentum, nisl luctus vehicula vestibulum, risus eros molestie enim, eget auctor nunc libero sit amet nulla. Suspendisse ac consectetur sapien. Sed lacinia, neque lacinia blandit congue, sapien erat malesuada augue, ac vestibulum quam metus id odio. Morbi metus magna, tempor quis enim id, commodo eleifend risus. Sed quis mollis lectus, sed imperdiet tortor. Pellentesque eget condimentum velit, a imperdiet ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
+
+# Acknowledgements 
+
+ Fusce quis hendrerit libero, id auctor quam. Duis et vestibulum mauris. Maecenas sagittis condimentum laoreet. Donec vitae lectus eu erat hendrerit facilisis sed eget sem. Nam interdum libero ac ex cursus suscipit.
+
+# References
+

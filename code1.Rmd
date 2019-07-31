@@ -1,0 +1,139 @@
+% Code
+
+# Introduction
+(What this script does?)
+Describes (in sufficient details for both self and third-party reproducibility!) the steps of the analysis of data obtained in field experiments conducted in Brazil to evaluate the effect of fungicides for managing soybean white mold. 
+
+
+# Data import
+The data were organized as binary file (.xlsx) and text file (.csv) and both are available with the same structure and content. R has functions for importing both data types. Let's work with the binary format for now as this is the format that is saved directly from a spreadsheet software (Excel, LibreOffice, etc.). We will use the `read_excel` function of the *readxl* package.
+
+```{r}
+library(readxl)
+
+# Load the data and assign it to dat_wm dataframe.
+dat_wm <- read_excel("data/dat-whitemold.xlsx")
+
+# Check the first and last six rows
+head(dat_wm)
+```
+
+# Data exploration
+
+Apparently, we have the data succesfully imported. Let's now use a combination of data visualization and wrangling to make some decisions on which data will be used and if there is any transformation required. We will use a set of functions of the *dplyr* package, but to facilitate our job (or the code style I like to use), let's load the tidyverse that includes dplyr, ggplot2 and several other packages, and also Janitor for basic summary.
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+# Check structure and type of variables automatically assigned
+glimpse(dat_wm)
+```
+
+
+```{r}
+## Number of treatments by year
+dat_wm %>%
+  tabyl(year)
+```
+
+
+## Number of studies by year
+
+```{r}
+dat_wm %>%
+  group_by(year, study) %>%
+  summarise(n()) %>%
+  tabyl(year)
+```
+
+
+## Number of studies by state
+
+```{r}
+dat_wm %>%
+  group_by(year, state) %>%
+  summarise(n()) %>%
+  tabyl(state)
+```
+
+## Number of treatments by fungicides 
+```{r}
+
+dat_wm %>%
+  tabyl(fungicide)
+```
+
+# Data wrangling
+
+Now that we explored the data, we may want to make some decisions such as selection of treatments based on criteria. For now, we decided to work with fungicides which were evaluated in more than 50 trials and applied only twice. Based on these, two fungicides will not be included in our analysis. Let's do some filtering in the data and prepare it for further analysis. We will also export the new data as a new data file.
+
+```{r}
+dat_wm2 <- dat_wm %>%
+  filter(fungicide != "CARB+PROCY-2") %>%
+  filter(fungicide != "TIOF-4")
+```
+
+Let's check if the filter was applied correctly
+
+```{r}
+dat_wm2 %>%
+  tabyl(fungicide)
+```
+
+Now we can export the new data using the `write_csv` function.
+
+```{r}
+write_csv(dat_wm2, "data-whitemold2.csv")
+```
+
+# Data visualization
+
+Now let's have a quick look at the data so we can learn from it before we go ahead with the meta-analysis.
+
+## Disease "pressure" by year
+
+```{r}
+theme_set(theme_light())
+dat_wm2 %>%
+  filter(fungicide == "AACHECK-0") %>%
+  ggplot(aes(year, inc_mean)) +
+  geom_boxplot()
+```
+
+
+## Baeline yield by year
+
+```{r}
+dat_wm2 %>%
+  filter(fungicide == "AACHECK-0") %>%
+  ggplot(aes(year, yld_mean)) +
+  geom_boxplot()
+```
+
+
+
+## Disease-yield relation
+
+```{r}
+dat_wm2 %>%
+  # filter(fungicide == "AACHECK-0") %>%
+  ggplot(aes(inc_mean, yld_mean)) +
+  geom_point()
+```
+
+
+## Baeline yield by fungicide
+
+```{r}
+dat_wm2 %>%
+  ggplot(aes(fungicide, yld_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Fungicide", y = "Yield (kg/ha)", title = "Effect of fungicides on soybean yield",
+    caption = "Source: Barro et al. (2019)"
+  )
+ggsave("figs/yield_fungicide_box.png")
+```

@@ -1,0 +1,46 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+% Data
+
+
+# Data import
+The data were organized as binary file (.xlsx) and text file (.csv) and both are available with the same structure and content. R has functions for importing both data types. Let's work with the binary format for now as this is the format that is saved directly from a spreadsheet software (Excel, LibreOffice, etc.). We will use the `read_excel` function of the *readxl* package.
+
+```{r}
+library(readxl) 
+
+# Load the data and assign it to dat_wm dataframe. 
+dat_wm <- read_excel("data/dat-whitemold.xlsx")
+
+# Check the first and last six rows
+head(dat_wm)
+
+```
+
+
+# Data wrangling
+
+Now that we explored the data, we may want to make some decisions such as selection of treatments based on criteria. For now, we decided to work with fungicides which were evaluated in more than 50 trials and applied only twice. Based on these, two fungicides will not be included in our analysis. Let's do some filtering in the data and prepare it for further analysis. We will also export the new data as a new data file.
+
+```{r}
+dat_wm2 <- dat_wm %>% 
+  filter(fungicide!= "CARB+PROCY-2") %>% 
+  filter(fungicide != "TIOF-4")
+```
+
+Let's check if the filter was applied correctly
+
+```{r}
+dat_wm2 %>% 
+  tabyl(fungicide)
+```
+
+Now we can export the new data using the `write_csv` function.
+
+```{r}
+write_csv(dat_wm2, "data/clean/data-whitemold2.csv")
+
+```
